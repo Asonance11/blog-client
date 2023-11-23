@@ -1,7 +1,9 @@
+import IUser from './user.type';
+
 interface IComment {
 	_id: string;
 	comment: string;
-	user: string;
+	user: IUser;
 	post: string;
 }
 
