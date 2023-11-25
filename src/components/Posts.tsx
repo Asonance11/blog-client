@@ -13,7 +13,6 @@ const Posts = () => {
 		try {
 			setIsLoading(true);
 			const response = await getAllPosts();
-			console.log(response);
 			setPosts(response);
 		} catch (error) {
 			if (error instanceof Error) {
