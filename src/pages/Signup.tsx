@@ -1,30 +1,45 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import Layout from '../components/Layout';
+import Loader from '../components/Loader';
 import { signup } from '../services/axios';
+
+interface ResponseData {
+	errors: string[] | { msg: string }[];
+}
 
 const Signup = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		try {
-			e.preventDefault();
+			setLoading(true);
 			await signup(username, password, confirmPassword);
 			toast.success('Successfully signed up!');
 			navigate('/login');
 		} catch (error) {
-			if (error instanceof Error) {
-				console.error(error);
-				toast.error(error.message);
-			} else {
-				console.error('An unexpected error occurred:', error);
-				toast.error('An unexpected error occurred. Please try again.');
-			}
+			console.error('Error in handleSubmit:', error);
+			const axiosError = error as AxiosError<ResponseData>;
+
+			axiosError.response?.data?.errors?.forEach(
+				(error: string | { msg: string }) => {
+					if (typeof error === 'string') {
+						toast.error(error);
+					} else if (error.msg) {
+						toast.error(error.msg);
+					}
+				}
+			);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -91,7 +106,7 @@ const Signup = () => {
 						type="submit"
 						className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline hover:bg-blue-600 transition duration-150 ease-in-out"
 					>
-						Sign Up
+						{loading ? <Loader /> : 'Sign Up'}
 					</button>
 				</form>
 			</section>
