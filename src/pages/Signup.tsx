@@ -104,7 +104,7 @@ const Signup = () => {
 					</div>
 					<button
 						type="submit"
-						className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline hover:bg-blue-600 transition duration-150 ease-in-out"
+						className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline hover:bg-blue-600 transition duration-150 ease-in-out"
 					>
 						{loading ? <Loader /> : 'Sign Up'}
 					</button>
