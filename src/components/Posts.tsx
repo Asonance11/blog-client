@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { getAllPosts } from '../services/axios';
 import IPost from '../types/post.type';
@@ -43,11 +44,13 @@ const Posts = () => {
 						: null)}
 				{posts &&
 					posts.map((post) => (
-						<Post
-							key={post._id}
-							title={post.title}
-							username={post.user.username}
-						/>
+						<Link to={`posts/${post._id}`}>
+							<Post
+								key={post._id}
+								title={post.title}
+								username={post.user.username}
+							/>
+						</Link>
 					))}
 			</div>
 		</section>
