@@ -13,6 +13,11 @@ export const getAllPosts = async (): Promise<IPost[]> => {
 	}
 };
 
+export const getPost = async (id: string | undefined): Promise<IPost> => {
+	const response = await axios.get(`${URL}/posts/${id}`);
+	return response.data;
+};
+
 export const signup = async (
 	username: string,
 	password: string,
