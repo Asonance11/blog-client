@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
@@ -14,6 +15,8 @@ const Login = () => {
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const navigate = useNavigate();
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -23,6 +26,7 @@ const Login = () => {
 			console.log(response);
 			localStorage.setItem('token', response.token);
 			toast.success('Successfully logged in!');
+			navigate('/');
 		} catch (error) {
 			console.error('Error in handleSubmit:', error);
 			const axiosError = error as AxiosError<ResponseData>;
