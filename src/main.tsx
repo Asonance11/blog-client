@@ -5,6 +5,7 @@ import { Toaster } from 'sonner';
 import App from './App.tsx';
 import './index.css';
 import Login from './pages/Login.tsx';
+import Post from './pages/Post.tsx';
 import Signup from './pages/Signup.tsx';
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 	{
 		path: '/signup',
 		element: <Signup />,
+	},
+	{
+		path: '/posts/:id',
+		element: <Post />,
 	},
 ]);
 
