@@ -18,15 +18,10 @@ export const signup = async (
 	password: string,
 	confirm_password: string
 ) => {
-	// try {
 	const response = await axios.post(`${URL}/signup`, {
 		username,
 		password,
 		confirm_password,
 	});
 	return response.data;
-	// } catch (error) {
-	// 	console.error(error);
-	// 	return [];
-	// }
 };
