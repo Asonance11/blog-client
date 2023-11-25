@@ -12,3 +12,21 @@ export const getAllPosts = async (): Promise<IPost[]> => {
 		return [];
 	}
 };
+
+export const signup = async (
+	username: string,
+	password: string,
+	confirm_password: string
+) => {
+	try {
+		const response = await axios.post(`${URL}/signup`, {
+			username,
+			password,
+			confirm_password,
+		});
+		return response.data;
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
+};
