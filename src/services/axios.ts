@@ -25,3 +25,11 @@ export const signup = async (
 	});
 	return response.data;
 };
+
+export const login = async (username: string, password: string) => {
+	const response = await axios.post(`${URL}/login`, {
+		username,
+		password,
+	});
+	return response.data;
+};
