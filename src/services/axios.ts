@@ -38,3 +38,12 @@ export const login = async (username: string, password: string) => {
 	});
 	return response.data;
 };
+
+export const createPost = async (post: IPost, token: string) => {
+	const response = await axios.post(`${URL}/posts`, post, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
+	return response.data;
+};
