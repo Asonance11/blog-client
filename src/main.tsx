@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import App from './App.tsx';
 import './index.css';
+import CreatePost from './pages/CreatePost.tsx';
 import Login from './pages/Login.tsx';
 import Post from './pages/Post.tsx';
 import Signup from './pages/Signup.tsx';
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 	{
 		path: '/posts/:id',
 		element: <Post />,
+	},
+	{
+		path: 'create-post',
+		element: <CreatePost />,
 	},
 ]);
 
