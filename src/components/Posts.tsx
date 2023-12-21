@@ -44,7 +44,7 @@ const Posts = () => {
 						: null)}
 				{posts &&
 					posts.map((post) => (
-						<Link to={`posts/${post._id}`}>
+						<Link key={post._id} to={`posts/${post._id}`}>
 							<Post
 								key={post._id}
 								title={post.title}
