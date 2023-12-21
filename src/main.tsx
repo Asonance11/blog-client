@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 		element: <Post />,
 	},
 	{
-		path: 'create-post',
+		path: 'create',
 		element: <CreatePost />,
 	},
 ]);
