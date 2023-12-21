@@ -25,6 +25,7 @@ const Login = () => {
 			const response = await login(username, password);
 			console.log(response);
 			localStorage.setItem('token', response.token);
+			localStorage.setItem('user', JSON.stringify(response.user));
 			toast.success('Successfully logged in!');
 			navigate('/');
 		} catch (error) {
@@ -52,7 +53,7 @@ const Login = () => {
 					className="bg-white shadow-md rounded-md p-8 max-w-md w-full"
 					onSubmit={handleSubmit}
 				>
-					<h2 className="text-2xl font-bold mb-6">Sign Up</h2>
+					<h2 className="text-2xl font-bold mb-6">Log in</h2>
 					<div className="mb-4">
 						<label
 							htmlFor="username"
@@ -91,7 +92,7 @@ const Login = () => {
 						type="submit"
 						className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline hover:bg-blue-600 transition duration-150 ease-in-out"
 					>
-						{loading ? <Loader /> : 'Sign Up'}
+						{loading ? <Loader /> : 'Log in'}
 					</button>
 				</form>
 			</section>
