@@ -34,7 +34,7 @@ const Posts = () => {
 	return (
 		<section>
 			<h2 className="mt-6 text-center text-2xl">Posts</h2>
-			<div className="container mx-auto flex justify-center items-center">
+			<div className="flex flex-col gap-8 px-6 lg:container">
 				{isLoading && <Loader />}
 				{!isLoading &&
 					(posts
