@@ -5,7 +5,7 @@ interface Proptype {
 
 const Post = (props: Proptype) => {
 	return (
-		<div className="bg-white shadow-md p-6 rounded-lg m-4 w-64">
+		<div className="bg-neutral-50 shadow-md p-6 rounded-lg w-full">
 			<h2 className="text-xl font-bold mb-2">{props.title}</h2>
 			<p className="text-gray-600">
 				Created by: <span className="font-bold">{props.username}</span>
