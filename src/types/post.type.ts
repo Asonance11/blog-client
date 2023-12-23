@@ -1,7 +1,7 @@
 import IUser from './user.type';
 
 interface IPost {
-	_id: string;
+	_id?: string;
 	title: string;
 	content: string;
 	user: IUser;
