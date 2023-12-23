@@ -13,7 +13,6 @@ interface ResponseData {
 	message?: string;
 }
 
-const token = localStorage.getItem('token') as string;
 const currentUser = JSON.parse(localStorage.getItem('user') as string);
 
 const CreatePost = () => {
@@ -21,6 +20,7 @@ const CreatePost = () => {
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 
+	const token = localStorage.getItem('token') as string;
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
