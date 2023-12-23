@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import TextEditor from '../components/TextEditor';
 import { createPost } from '../services/axios';
 import IPost from '../types/post.type';
+import Login from './Login';
 
 interface ResponseData {
 	errors: string[] | { msg: string }[];
@@ -55,6 +56,10 @@ const CreatePost = () => {
 		}
 	};
 
+	if (!token) {
+		return <Login />;
+	}
+
 	return (
 		<Layout>
 			<h1 className="text-3xl text-center font-bold my-6">Create Post</h1>
@@ -83,15 +88,6 @@ const CreatePost = () => {
 					>
 						Content
 					</label>
-					{/* <textarea
-						name="content"
-						id="content"
-						placeholder="Enter your Content"
-						onChange={(e) => setContent(e.target.value)}
-						value={content}
-						rows={10}
-						className="w-full px-4 py-2 border rounded-md focus:outline-none focus:shadow-outline"
-					/> */}
 					<TextEditor content={content} setContent={setContent} />
 				</div>
 				<button
