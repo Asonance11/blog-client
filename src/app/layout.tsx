@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Public_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const font = Public_Sans({ subsets: ["latin"] });
+const font = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "A blog",
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={cn("scroll-smooth", font.className)}>{children}</body>
     </html>
   );
 }

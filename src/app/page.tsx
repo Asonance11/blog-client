@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>This is under construction</h1>
-      <Button variant="default">Click Me</Button>
+    <main className="max-screen-xl">
+      <div className="px-10 md:px20">
+        <Navbar />
+      </div>
     </main>
   );
 }
