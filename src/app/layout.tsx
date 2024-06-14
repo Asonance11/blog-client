@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Navbar from "@/components/Navbar";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("scroll-smooth", font.className)}>{children}</body>
+      <body className={cn("scroll-smooth", font.className)}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
