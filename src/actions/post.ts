@@ -20,3 +20,14 @@ export const getLatestPosts = async (): Promise<IPost[] | undefined> => {
     console.log("Error getting latest posts", error);
   }
 };
+
+export const getPostById = async (
+  postId: string,
+): Promise<IPost | undefined> => {
+  try {
+    const response = await axios.get(`${url}/posts/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.log("Error getting post", error);
+  }
+};
