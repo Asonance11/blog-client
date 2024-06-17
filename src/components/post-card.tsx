@@ -7,9 +7,10 @@ interface Ipost {
   title: string;
   description: string;
   imageUrl: string;
+  username: string;
 }
 
-const PostCard = ({ title, imageUrl, description, id }: Ipost) => {
+const PostCard = ({ title, imageUrl, description, id, username }: Ipost) => {
   return (
     <Link href={`/posts/${id}`}>
       <Card className="">
@@ -26,6 +27,9 @@ const PostCard = ({ title, imageUrl, description, id }: Ipost) => {
         <CardFooter className="flex flex-col items-start mt-2">
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
           <p>{description}</p>
+          <p className="mt-2">
+            By: <span className="font-medium">{username}</span>
+          </p>
         </CardFooter>
       </Card>
     </Link>

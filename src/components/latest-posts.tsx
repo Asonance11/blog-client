@@ -20,6 +20,7 @@ const LatestPosts = async () => {
               title={post.title}
               description={post.description}
               imageUrl={post.imageUrl}
+              username={post.user.username}
             ></PostCard>
           ))
         ) : (
