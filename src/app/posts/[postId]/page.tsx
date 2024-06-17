@@ -1,5 +1,6 @@
 import { getPostById } from "@/actions/post";
-import MarkdownRenderer from "@/components/markdown";
+import { PreBlock } from "@/lib/syntaxhighlight";
+import Markdown from "markdown-to-jsx";
 import Image from "next/image";
 import React from "react";
 
@@ -28,7 +29,9 @@ const PostIdPage = async ({ params }: { params: { postId: string } }) => {
         />
       </div>
       <div>
-        <MarkdownRenderer markdown={post.content} />
+        <Markdown options={{ overrides: { pre: PreBlock } }}>
+          {post.content!}
+        </Markdown>
       </div>
     </article>
   );
