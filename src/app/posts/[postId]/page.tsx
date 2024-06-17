@@ -1,8 +1,10 @@
 import { getPostById } from "@/actions/post";
-import { PreBlock } from "@/lib/syntaxhighlight";
-import Markdown from "markdown-to-jsx";
+import Markdown from "react-markdown";
 import Image from "next/image";
 import React from "react";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 const PostIdPage = async ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
@@ -29,7 +31,10 @@ const PostIdPage = async ({ params }: { params: { postId: string } }) => {
         />
       </div>
       <div>
-        <Markdown options={{ overrides: { pre: PreBlock } }}>
+        <Markdown
+          remarkPlugins={[[remarkGfm]]}
+          rehypePlugins={[rehypeRaw, rehypeHighlight]}
+        >
           {post.content!}
         </Markdown>
       </div>
