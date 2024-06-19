@@ -1,4 +1,4 @@
-import { getLatestPosts } from "@/actions/post";
+import { getLatestPosts } from "@/actions/api";
 import PostCard from "./post-card";
 
 const LatestPosts = async () => {
