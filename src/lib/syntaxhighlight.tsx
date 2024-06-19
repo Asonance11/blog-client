@@ -1,8 +1,6 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark as CodeStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// I GOT THIS CODE FROM THE FUCKING INTERNET, I'M INNOCENT.
-
 interface Props {
   className: string;
   children: any;
