@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={cn("scroll-smooth", font.className)}>
         <Navbar />
         {children}
-        <Toaster />
+        <Toaster richColors />
       </body>
     </html>
   );

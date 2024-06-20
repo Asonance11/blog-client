@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-const url = process.env.API_URL as string;
+const url = "http://localhost:8000/api";
 
 export interface IUser {
   username: string;
@@ -25,7 +25,6 @@ export const login = async (data: IUser) => {
     const response = await axios.post(`http://localhost:8000/api/login`, data);
     const { token, user } = response.data;
     localStorage.setItem("token", token);
-    toast.success("Log in Successful");
     return user;
   } catch (error: any) {
     console.error("Error logging in", error);
