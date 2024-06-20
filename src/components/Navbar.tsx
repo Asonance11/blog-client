@@ -27,7 +27,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Button variant="link" size="lg" asChild>
-              <Link href="/posts/create">Create post</Link>
+              <Link href="/posts/new">Create post</Link>
             </Button>
             <Button variant="default" onClick={onClick}>
               Logout
