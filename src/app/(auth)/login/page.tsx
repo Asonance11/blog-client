@@ -19,8 +19,8 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be atleast 2 characters",
+  username: z.string().min(3, {
+    message: "Username must be atleast 3 characters",
   }),
   password: z.string(),
 });
@@ -37,10 +37,17 @@ const LoginPage = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await login(values);
-    userLogin();
-    router.push("/");
-    toast.success("Logged in successfully");
+    try {
+      const user = await login(values);
+      if (user) {
+        userLogin();
+        router.push("/");
+        toast.success("Logged in successfully");
+      }
+    } catch (error) {
+      console.error("Error during login", error);
+      toast.error("An unexpected error occurred");
+    }
   }
 
   const isLoading = form.formState.isSubmitting;

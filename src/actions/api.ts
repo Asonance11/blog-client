@@ -22,12 +22,18 @@ export interface IPost {
 
 export const login = async (data: IUser) => {
   try {
-    const response = await axios.post(`${url}/login`, data);
-    const { token } = response.data;
+    const response = await axios.post(`http://localhost:8000/api/login`, data);
+    const { token, user } = response.data;
     localStorage.setItem("token", token);
-  } catch (error) {
-    console.log("Error logging in", error);
-    toast.error("Invalid email or password");
+    toast.success("Log in Successful");
+    return user;
+  } catch (error: any) {
+    console.error("Error logging in", error);
+    if (error.response && error.response.data && error.response.data.errors) {
+      error.response.data.errors.forEach((err: any) => toast.error(err.msg));
+    } else {
+      toast.error("An unexpected error occurred");
+    }
   }
 };
 
