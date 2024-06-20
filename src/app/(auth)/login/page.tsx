@@ -66,7 +66,7 @@ const LoginPage = () => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input {...field} type="text" />
+                  <Input {...field} type="text" required disabled={isLoading}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,13 +79,13 @@ const LoginPage = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} type="password" />
+                  <Input {...field} type="password" required disabled={isLoading} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">{isLoading ? <Loader /> : "Sign in"}</Button>
+          <Button type="submit" disabled={isLoading}>{isLoading ? <Loader /> : "Sign in"}</Button>
         </form>
       </Form>
     </section>
