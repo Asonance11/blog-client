@@ -8,6 +8,12 @@ export interface IUser {
   password: string;
 }
 
+export interface IUserSignup {
+  username: string;
+  password: string;
+  confirm_password: string;
+}
+
 export interface IPost {
   _id: string;
   title: string;
@@ -30,6 +36,22 @@ export const login = async (data: IUser) => {
     console.error("Error logging in", error);
     if (error.response && error.response.data && error.response.data.errors) {
       error.response.data.errors.forEach((err: any) => toast.error(err.msg));
+    } else {
+      toast.error("An unexpected error occurred");
+    }
+  }
+};
+
+export const signup = async (data: IUser) => {
+  try {
+    const response = await axios.post(`${url}/signup`, data);
+    return response.data;
+  } catch (error: any) {
+    console.log("Error signing up", error);
+    if (error.response && error.response.data && error.response.data.errors) {
+      error.response.data.errors.forEach((err: any) => {
+        toast.error(err.msg);
+      });
     } else {
       toast.error("An unexpected error occurred");
     }
