@@ -15,13 +15,21 @@ export interface IUserSignup {
 }
 
 export interface IPost {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
-  content: string;
+  content: any;
   imageUrl: string;
   user: { username: string };
-  createdAt: string;
+  createdAt?: string;
+}
+
+export interface IPostData {
+  title: string;
+  description: string;
+  content: any;
+  imageUrl: string;
+  published: boolean;
 }
 
 // Users
@@ -75,5 +83,32 @@ export const getPostById = async (
     return response.data;
   } catch (error) {
     console.log("Error getting post", error);
+  }
+};
+
+export const createPost = async (data: IPostData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(`${url}/posts`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 201) {
+      toast.success("Post created successfully");
+      return response.data.post;
+    }
+  } catch (error: any) {
+    console.log("Error creating post:", error);
+
+    if (error.response && error.response.data) {
+      const errorMessage =
+        error.response.data.message || "Failed to create post";
+      toast.error(errorMessage);
+    } else {
+      toast.error("An error occurred while creating the post");
+    }
   }
 };
