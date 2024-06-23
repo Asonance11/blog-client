@@ -36,6 +36,8 @@ const CreateNewPostPage = () => {
       published,
     });
 
+    // TODO: Make this route to the post ID route
+
     if (newPost) {
       router.push("/");
     }
@@ -74,10 +76,10 @@ const CreateNewPostPage = () => {
         </div>
 
         <div className="flex items-center justify-end gap-x-4">
-          <Button variant="neutral" onClick={saveDraft}>
+          <Button variant="neutral" onClick={saveDraft} type="button">
             Save Draft
           </Button>
-          <Button variant="noShadow" onClick={publishPost}>
+          <Button variant="noShadow" onClick={publishPost} type="button">
             Publish Post
           </Button>
         </div>
