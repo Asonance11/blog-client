@@ -3,29 +3,28 @@ import { BlockNoteView } from "@blocknote/mantine";
 import { useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
-import { PartialBlock } from "@blocknote/core";
 import { uploadFiles } from "@/utils/uploadthing";
+import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
+import { useCallback, useEffect } from "react";
 
 interface EditorProps {
-  onEditorChange?: (value: any) => void;
-  initialContent?: any;
+  onChange?: (value: any) => void;
+  initialContent?: string;
   editable?: boolean;
 }
 
 const Editor: React.FC<EditorProps> = ({
-  onEditorChange,
+  onChange,
   initialContent,
   editable,
 }) => {
-  const onChange = async () => {
-    const html = await editor.blocksToHTMLLossy(editor.document);
-    //@ts-ignore
-    if (onEditorChange) {
-      onEditorChange(editor.document);
+  const onEditorChange = () => {
+    if (onChange) {
+      onChange(editor.document);
     }
   };
 
-  const editor = useCreateBlockNote({
+  const editor: BlockNoteEditor = useCreateBlockNote({
     initialContent: initialContent
       ? (JSON.parse(initialContent) as PartialBlock[])
       : undefined,
@@ -40,7 +39,7 @@ const Editor: React.FC<EditorProps> = ({
       editable={editable}
       editor={editor}
       theme="light"
-      onChange={onChange}
+      onChange={onEditorChange}
     />
   );
 };

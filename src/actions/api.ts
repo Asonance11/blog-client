@@ -15,7 +15,7 @@ export interface IUserSignup {
 }
 
 export interface IPost {
-  _id?: string;
+  _id: string;
   title: string;
   description: string;
   content: any;

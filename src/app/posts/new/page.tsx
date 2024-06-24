@@ -17,10 +17,10 @@ const CreateNewPostPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [content, setContent] = useState<Block[]>([]);
 
-  const onChangeBlocks = (value: any) => {
-    setBlocks(value);
+  const onChangeBlocks = (newContent: any) => {
+    setContent(newContent);
   };
 
   const onChangeImageUrl = (value?: string) => {
@@ -32,7 +32,7 @@ const CreateNewPostPage = () => {
       title,
       description,
       imageUrl,
-      content: blocks,
+      content: JSON.stringify(content), // This should become a string
       published,
     });
 
@@ -72,7 +72,7 @@ const CreateNewPostPage = () => {
         </div>
         <FileUpload value={imageUrl} onChange={onChangeImageUrl} />
         <div className="py-2 rounded-lg min-h-96 border-2 border-black">
-          <Editor onEditorChange={onChangeBlocks} editable={true} />{" "}
+          <Editor onChange={onChangeBlocks} editable={true} />{" "}
         </div>
 
         <div className="flex items-center justify-end gap-x-4">
