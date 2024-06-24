@@ -11,7 +11,7 @@ const LatestPosts = async () => {
   return (
     <section className="mt-20 px-8">
       <h2 className="text-2xl font-heading text-center">Latest Posts</h2>
-      <div className="mt-8 grid grid-cols-3 gap-8 px-8 place-items-center">
+      <div className="mt-8 grid grid-cols-3 gap-8 px-8">
         {posts.length > 0 ? (
           posts.map((post) => (
             <PostCard

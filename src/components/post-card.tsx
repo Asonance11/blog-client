@@ -13,7 +13,7 @@ interface Ipost {
 const PostCard = ({ title, imageUrl, description, id, username }: Ipost) => {
   return (
     <Link href={`/posts/${id}`}>
-      <Card className="">
+      <Card className="w-full">
         <CardContent>
           <div className="aspect-square relative rounded-lg">
             <Image
