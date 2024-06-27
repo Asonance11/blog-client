@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/stores/user-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -26,7 +27,7 @@ const formSchema = z.object({
 });
 
 const LoginPage = () => {
-  const { userLogin } = useUserStore();
+  const { userLogin, isLoggedIn } = useUserStore();
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,6 +52,12 @@ const LoginPage = () => {
   }
 
   const isLoading = form.formState.isSubmitting;
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <section className="flex flex-col max-w-xl p-8 mx-auto mt-8">
