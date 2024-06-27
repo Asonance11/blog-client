@@ -18,6 +18,7 @@ const CreateNewPostPage = () => {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState<Block[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const onChangeBlocks = (newContent: any) => {
     setContent(newContent);
@@ -44,11 +45,25 @@ const CreateNewPostPage = () => {
   };
 
   const saveDraft = async () => {
-    await savePost(false);
+    try {
+      setLoading(true);
+      await savePost(false);
+    } catch (error) {
+      console.log("Error Creating Post", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const publishPost = async () => {
-    await savePost(true);
+    try {
+      setLoading(true);
+      await savePost(true);
+    } catch (error) {
+      console.log("Error Creating Post", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,6 +75,7 @@ const CreateNewPostPage = () => {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            disabled={loading}
           />
         </div>
         <div>
@@ -68,6 +84,7 @@ const CreateNewPostPage = () => {
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            disabled={loading}
           />
         </div>
         <FileUpload value={imageUrl} onChange={onChangeImageUrl} />
@@ -76,10 +93,20 @@ const CreateNewPostPage = () => {
         </div>
 
         <div className="flex items-center justify-end gap-x-4">
-          <Button variant="neutral" onClick={saveDraft} type="button">
+          <Button
+            disabled={loading}
+            variant="neutral"
+            onClick={saveDraft}
+            type="button"
+          >
             Save Draft
           </Button>
-          <Button variant="noShadow" onClick={publishPost} type="button">
+          <Button
+            disabled={loading}
+            variant="noShadow"
+            onClick={publishPost}
+            type="button"
+          >
             Publish Post
           </Button>
         </div>
