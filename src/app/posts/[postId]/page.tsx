@@ -13,8 +13,6 @@ const PostIdPage = async ({ params }: { params: { postId: string } }) => {
     return;
   }
 
-  console.log(post.content);
-
   return (
     <article className="max-w-4xl mt-8 px-10 flex flex-col gap-2 items-center mx-auto pb-8">
       <h1 className="font-heading text-3xl text-center">{post.title}</h1>
