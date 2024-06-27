@@ -1,7 +1,6 @@
 # Some todos
 
 - Shows unauthorized for some reason everyother day a blog post is created
-- Change the paths for the login and register path
 - Fix the width of the editor while reading blogs
 - Rework user state just in case
 - Add protected routes

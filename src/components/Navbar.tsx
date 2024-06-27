@@ -13,7 +13,7 @@ const Navbar = () => {
 
   const onClick = () => {
     logout();
-    router.refresh();
+    router.push("/");
     toast.success("Loggged out successfully");
   };
 
@@ -36,10 +36,10 @@ const Navbar = () => {
         ) : (
           <>
             <Button variant="link" size="lg" asChild>
-              <Link href="login">Login</Link>
+              <Link href="/login">Login</Link>
             </Button>
             <Button variant="default" size="lg" asChild>
-              <Link href="register">Register</Link>
+              <Link href="/register">Register</Link>
             </Button>
           </>
         )}
